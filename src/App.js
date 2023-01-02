@@ -1,11 +1,9 @@
 import Instrument from "./components/Instrument";
 import {
   BrowserRouter as Router,
-  Switch,
   Routes,
   Route,
   Navigate,
-  Redirect,
 } from "react-router-dom";
 import Quotes from "./components/Quotes";
 
