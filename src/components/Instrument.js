@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Papa from "papaparse";
 import file from "../../src/instruments.csv";
-import "../css/instruments.css";
 import Table from "./Table";
 import { Link } from "react-router-dom";
 
