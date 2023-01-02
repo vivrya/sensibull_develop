@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTable, useGlobalFilter } from "react-table";
+import "../css/table.css"
 
 export default function Table({ columns, data }) {
   const [filterInput, setFilterInput] = useState("");
@@ -33,7 +34,7 @@ export default function Table({ columns, data }) {
     <div className="container">
       <input
         className="search_bar"
-        placeholder={"Type stock name"}
+        placeholder={"Type stock symbol or name"}
         value={filterInput}
         onChange={handleFilterChange}
       />
@@ -49,7 +50,7 @@ export default function Table({ columns, data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {rows?.length===0?<h3 className="data-not-found">Data not found</h3>:rows.map((row, i) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>

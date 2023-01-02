@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
-import Papa from "papaparse";
-import file from "../../src/csvData/instruments.csv";
 import Table from "./Table";
 import { Link } from "react-router-dom";
+import endPoints from "../endpoint";
 
 const Instrument = () => {
   const modifiedData = [];
@@ -11,14 +10,14 @@ const Instrument = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const getInstrumentData = async () => {
-    Papa.parse(file, {
-      download: true,
-      complete: (result) => {
-        setCsvData(result.data);
-        setIsLoading(false);
-      },
-    });
+    const url = endPoints.instruments;
+    const response = await fetch(url);
+    const res = await response.text();
+    const dataArray = res?.split("\n")?.map((row) => row.split(","));
+    setCsvData(dataArray);
+    setIsLoading(false);
   };
+  console.log("csv from papa parse", csvData);
   const modifyCsvData = () => {
     for (var i = 1; i < csvData.length - 1; i++) {
       let show = {};
@@ -39,7 +38,7 @@ const Instrument = () => {
 
   const columns = useMemo(() => [
     {
-      Header: "Sensibull",
+      Header: " ",
       columns: [
         {
           Header: "Symbol",

@@ -37,6 +37,7 @@ const Quotes = () => {
   useEffect(() => {
     sortData();
   }, [sortMethod]);
+
   const sortData = () => {
     setQuotesData(
       [...quotesData].sort((a, b) => {
